@@ -14,6 +14,7 @@ import json
 @csrf_exempt
 @api_view(["GET"])
 def initialize(request):
+    print(request)
     user = request.user
     player = user.player
     player_id = player.id
@@ -58,6 +59,31 @@ def move(request):
     else:
         players = room.playerNames(player_id)
         return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
+
+@csrf_exempt
+@api_view(["GET"])
+def getRooms(request):
+    #Get all rooms from DB
+
+    #And return in response
+    roomTitles = []
+    print ("Rooms : ",Room.objects.all())
+    for room in Room.objects.all():
+        print(room.title)
+        roomTitles.append(room.title)
+        print(roomTitles)
+
+    return JsonResponse({'rooms' : roomTitles}, safe=True)
+
+@api_view(["POST"])
+def addRooms(request):
+    rooms ={}
+    for rooms in Room.objects.all():
+       rooms.update({'new_title':'new_description'})
+       print(rooms)
+
+
+
 
 
 @csrf_exempt

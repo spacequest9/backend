@@ -46,7 +46,10 @@ You can consider Pusher websocket integration to be a stretch goal. Your server 
 
 #### 3. Create an interesting world on the server
 
-To create your world, you will need to [add rooms](https://github.com/LambdaSchool/CS-Build-Week-1/blob/master/util/create_world.py) to your server. You will need to create more rooms and descriptions to build a unique, traversable world that your client apps can interact with via REST API calls.
+To create your world, you will need to
+ [add rooms](https://github.com/LambdaSchool/CS-Build-Week-1/blob/master/util/create_world.py) 
+ to your server. You will need to create more rooms and descriptions to build a unique, traversable 
+ world that your client apps can interact with via REST API calls.
 
 You will also need to implement a GET `rooms` API endpoint for clients to fetch all rooms to display a map on the frontend.
 
