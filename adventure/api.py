@@ -75,12 +75,6 @@ def getRooms(request):
 
     return JsonResponse({'rooms' : roomTitles}, safe=True)
 
-@api_view(["POST"])
-def addRooms(request):
-    rooms ={}
-    for rooms in Room.objects.all():
-       rooms.update({'new_title':'new_description'})
-       print(rooms)
 
 
 
