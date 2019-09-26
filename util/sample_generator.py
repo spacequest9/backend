@@ -7,7 +7,7 @@
 
 
 class Room:
-    def __init__(self, id, name, description, x, y):
+    def __init__(self, id, name, description):
         self.id = id
         self.name = name
         self.description = description
@@ -15,8 +15,8 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
-        self.x = x
-        self.y = y
+        self.locx = None
+        self.locy = None
     def __repr__(self):
         if self.e_to is not None:
             return f"({self.x}, {self.y}) -> ({self.e_to.x}, {self.e_to.y})"

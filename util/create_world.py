@@ -6,23 +6,23 @@ print("Create world called...")
 Room.objects.all().delete()
 
 r_outside = Room(title="Outside Cave Entrance",
-               description="North of you, the cave mount beckons")
+               description="North of you, the cave mount beckons", locx=100, locy=400)
 
 r_foyer = Room(title="Foyer", description="""Dim light filters in from the south. Dusty
-passages run north and east.""")
+passages run north and east.""", locx=150, locy=350)
 
 r_overlook = Room(title="Grand Overlook", description="""A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""")
+the distance, but there is no way across the chasm.""", locx=220, locy=230)
 
 r_narrow = Room(title="Narrow Passage", description="""The narrow passage bends here from west
-to north. The smell of gold permeates the air.""")
+to north. The smell of gold permeates the air.""", locx=300, locy=245)
 
 r_treasure = Room(title="Treasure Chamber", description="""You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""")
+earlier adventurers. The only exit is to the south.""", locx=290, locy=100)
 
-r_addNewRoom = Room(title="New Room", description="""This is new room...""")
+r_addNewRoom = Room(title="New Room", description="""This is new room...""", locx=None, locy=None)
 
 r_outside.save()
 r_foyer.save()
