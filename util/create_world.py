@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from adventure.models import Player, Room
 
+print("Create world called...")
 
 Room.objects.all().delete()
 
@@ -21,11 +22,14 @@ r_treasure = Room(title="Treasure Chamber", description="""You've found the long
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""")
 
+r_addNewRoom = Room(title="New Room", description="""This is new room...""")
+
 r_outside.save()
 r_foyer.save()
 r_overlook.save()
 r_narrow.save()
 r_treasure.save()
+r_addNewRoom.save()
 
 # Link rooms together
 r_outside.connectRooms(r_foyer, "n")
@@ -39,6 +43,8 @@ r_narrow.connectRooms(r_foyer, "w")
 
 r_narrow.connectRooms(r_treasure, "n")
 r_treasure.connectRooms(r_narrow, "s")
+
+r_outside.connectRooms(r_addNewRoom, 'e')
 
 players=Player.objects.all()
 for p in players:

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .models import *
 from rest_framework.decorators import api_view
 import json
+import util.create_world
 
 # instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
@@ -14,12 +15,14 @@ import json
 @csrf_exempt
 @api_view(["GET"])
 def initialize(request):
+    print(request)
     user = request.user
     player = user.player
     player_id = player.id
     uuid = player.uuid
     room = player.room()
     players = room.playerNames(player_id)
+
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
 
 
@@ -58,6 +61,25 @@ def move(request):
     else:
         players = room.playerNames(player_id)
         return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
+
+@csrf_exempt
+@api_view(["GET"])
+def getRooms(request):
+    #Get all rooms from DB
+
+    #And return in response
+    roomTitles = []
+    print ("Rooms : ",Room.objects.all())
+    for room in Room.objects.all():
+        print(room.title)
+        roomTitles.append(room.title)
+        print(roomTitles)
+
+    return JsonResponse({'rooms' : roomTitles}, safe=True)
+
+
+
+
 
 
 @csrf_exempt
