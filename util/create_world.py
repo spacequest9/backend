@@ -22,8 +22,6 @@ r_treasure = Room(title="Treasure Chamber", description="""You've found the long
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south.""", locx=290, locy=100)
 
-r_addNewRoom = Room(title="New Room", description="""This is new room...""")
-
 r_outside.save()
 r_foyer.save()
 r_overlook.save()
