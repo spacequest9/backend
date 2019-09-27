@@ -66,16 +66,7 @@ def move(request):
 @api_view(["GET"])
 def getRooms(request):
     #Get all rooms from DB
-
-    #And return in response
-    roomTitles = []
-    print ("Rooms : ",Room.objects.all())
-    for room in Room.objects.all():
-        print(room.title)
-        roomTitles.append(room.title)
-        print(roomTitles)
-
-    return JsonResponse({'rooms' : roomTitles}, safe=True)
+    return JsonResponse({'rooms' : [room for room in Room.objects.all()]}, safe=True)
 
 
 
