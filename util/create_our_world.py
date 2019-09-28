@@ -61,5 +61,5 @@ beta_lyrae.connectRooms(gamma_lyrae, "w")
 # reset all players to starting room
 players=Player.objects.all()
 for p in players:
-  p.currentRoom=r_outside.id
+  p.currentRoom=epsilon_lyrae.id
   p.save()
