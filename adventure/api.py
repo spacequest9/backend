@@ -75,8 +75,8 @@ def move(request):
     #     return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
     player = request.user.player
     data = json.loads(request.body)
-    room_id = int(data['room_id'])
-    player.currentRoom = Room.objects.get('id': room_id)
+    player.currentRoom = int(data['room_id'])
+    # player.currentRoom = Room.objects.get('id': room_id)
     room = player.room()
 
     return JsonResponse({
