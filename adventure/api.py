@@ -99,8 +99,8 @@ def getRooms(request):
     #     rooms.append({"id": room.id, "locx": room.locx, "locy": room.locy})
     # return JsonResponse({'rooms': rooms}, safe=True)
     rooms =  [{
-        'id': room.id, 
-        'title': room.title, 
+        'id': room.id,
+        'title': room.title,
         'description': room.description,
         'n_to': room.n_to,
         's_to': room.s_to,
