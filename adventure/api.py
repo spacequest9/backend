@@ -35,7 +35,7 @@ def initialize(request):
         'players': player_names
     }
     print(current_room)
-    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': uuid, 'room': current_room}, safe=True)
+    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': player.uuid, 'room': current_room}, safe=True)
 
 
 @csrf_exempt
