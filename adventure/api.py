@@ -68,12 +68,24 @@ def getRooms(request):
     #Get all rooms from DB
 
     #And return in response
-    roomTitles = []
+    room = []
     print ("Rooms : ",Room.objects.all())
-    for room in Room.objects.all():
-        print(room.title)
-        roomTitles.append(room.title)
-        print(roomTitles)
+    # for room in Room.objects.all():
+    #
+    #     room.append({title:"room.title",description:"room.description"})
+    #     print(roomTitles)
+    rooms = [{
+        'id': room.id,
+        'title': room.title,
+        'description': room.description,
+        'n_to': room.n_to,
+        's_to': room.s_to,
+        'e_to': room.e_to,
+        'w_to': room.w_to,
+        'locx': room.locx,
+        'locy': room.locy} for room in Room.objects.all()
+    ]
+    return JsonResponse({'rooms': rooms}, safe=True)
 
     return JsonResponse({'rooms' : roomTitles}, safe=True)
 

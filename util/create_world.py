@@ -1,7 +1,38 @@
 from django.contrib.auth.models import User
 from adventure.models import Player, Room
 
+import random
+
 print("Create world called...")
+roomDict= {}
+i = 1
+with open("util/data") as f:
+    for line in f:
+        x = line.split(":")
+        print (x)
+        title = x[0]
+        description = x[1]
+        room = Room(title=title, description= description)
+        roomDict[i] = room
+        i += 1
+
+roomIds = roomDict.keys()
+random.shuffle(roomIds)
+for i in range(1, len(roomIds)//2):
+    room1 = roomDict[i]
+    room2 = roomDict[i+1]
+    room1.e_to = room2
+    room2.w_to = room1
+
+random.shuffle(roomIds)
+for i in range(1, len(roomIds)//2):
+    room1 = roomDict[i]
+    room2 = roomDict[i+1]
+    room1.n_to = room2
+    room2.s_to = room1
+
+# for i, room in roomDict.items():
+#     room.save()
 
 Room.objects.all().delete()
 
