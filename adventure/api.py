@@ -74,23 +74,20 @@ def move(request):
     player.currentRoom = int(data['room_id'])
     # player.currentRoom = Room.objects.get('id': room_id)
     room = player.room()
+    room_dict = {
+        'id': room.id, 
+        'title': room.title, 
+        'description': room.description,
+        'n_to': room.n_to,
+        's_to': room.s_to,
+        'e_to': room.e_to,
+        'w_to': room.w_to,
+        'locx': room.locx,
+        'locy': room.locy,
+        'players': room.playerNames(player.id)
+    }
 
-    return JsonResponse({
-        'id': player.id,
-        'name': player.user.username,  
-        'uuid': uuid, 
-        'room': {
-            'id': room.id, 
-            'title': room.title, 
-            'description': room.description,
-            'n_to': room.n_to,
-            's_to': room.s_to,
-            'e_to': room.e_to,
-            'w_to': room.w_to,
-            'locx': room.locx,
-            'locy': room.locy,
-            'players': room.playerNames(player.id)
-        }, safe=True)
+    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': uuid, 'room': room_dict}, safe=True)
 
 
 @csrf_exempt
@@ -101,18 +98,18 @@ def getRooms(request):
     # for room in Room.objects.all():
     #     rooms.append({"id": room.id, "locx": room.locx, "locy": room.locy})
     # return JsonResponse({'rooms': rooms}, safe=True)
-    return JsonResponse({
-        'rooms' : [{
-            'id': room.id, 
-            'title': room.title, 
-            'description': room.description,
-            'n_to': room.n_to,
-            's_to': room.s_to,
-            'e_to': room.e_to,
-            'w_to': room.w_to,
-            'locx': room.locx,
-            'locy': room.locy,} for room in Room.objects.all()
-        ]}, safe=True)
+    rooms =  [{
+        'id': room.id, 
+        'title': room.title, 
+        'description': room.description,
+        'n_to': room.n_to,
+        's_to': room.s_to,
+        'e_to': room.e_to,
+        'w_to': room.w_to,
+        'locx': room.locx,
+        'locy': room.locy} for room in Room.objects.all()
+    ]
+    return JsonResponse({'rooms': rooms}, safe=True)
 
 
 @csrf_exempt
