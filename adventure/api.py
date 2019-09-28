@@ -17,11 +17,8 @@ import json
 def initialize(request):
     print("initialize()")
     player = request.user.player
-    print(player)
     room = player.room()
-    print(room)
     player_names = room.playerNames(player.id)
-    print(player_names)
     current_room = {
         'id': room.id, 
         'title': room.title, 
@@ -34,7 +31,6 @@ def initialize(request):
         'locy': room.locy,
         'players': player_names
     }
-    print(current_room)
     return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': player.uuid, 'room': current_room}, safe=True)
 
 
@@ -78,9 +74,8 @@ def move(request):
     player = request.user.player
     data = json.loads(request.body)
     player.currentRoom = int(data['room_id'])
-    # player.currentRoom = Room.objects.get('id': room_id)
     room = player.room()
-    room_dict = {
+    current_room = {
         'id': room.id, 
         'title': room.title, 
         'description': room.description,
@@ -92,8 +87,7 @@ def move(request):
         'locy': room.locy,
         'players': room.playerNames(player.id)
     }
-
-    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': uuid, 'room': room_dict}, safe=True)
+    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': player.uuid, 'room': current_room}, safe=True)
 
 
 @csrf_exempt
