@@ -69,7 +69,7 @@ def getRooms(request):
     rooms = []
     for room in Room.objects.all():
         print(room.title)
-        rooms.append(room.title, room.description, room.locx, room.locy)
+        rooms.append(room.title)
         print(rooms)
     return JsonResponse({'rooms' : rooms}, safe=True)
 
