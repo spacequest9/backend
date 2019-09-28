@@ -67,18 +67,11 @@ def move(request):
 def getRooms(request):
     #Get all rooms from DB
     rooms = []
-   print ("Rooms : ",Room.objects.all())
-   for room in Room.objects.all():
-       print(room.title)
-       rooms.append(room.title, room.description, room.locx, room.locy)
-       print(rooms)
-   return JsonResponse({'rooms' : rooms}, safe=True)
-
-#     return JsonResponse({'rooms' : [room for room in Room.objects.all()]}, safe=True)
-
-
-
-
+    for room in Room.objects.all():
+        print(room.title)
+        rooms.append(room.title, room.description, room.locx, room.locy)
+        print(rooms)
+    return JsonResponse({'rooms' : rooms}, safe=True)
 
 
 @csrf_exempt
