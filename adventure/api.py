@@ -15,9 +15,14 @@ import json
 @csrf_exempt
 @api_view(["GET"])
 def initialize(request):
+    print("initialize()")
     player = request.user.player
+    print(player)
     room = player.room()
-    room_dict = {
+    print(room)
+    player_names = room.playerNames(player.id)
+    print(player_names)
+    current_room = {
         'id': room.id, 
         'title': room.title, 
         'description': room.description,
@@ -27,9 +32,10 @@ def initialize(request):
         'w_to': room.w_to,
         'locx': room.locx,
         'locy': room.locy,
-        'players': room.playerNames(player.id)
+        'players': player_names
     }
-    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': uuid, 'room': room_dict}, safe=True)
+    print(current_room)
+    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': uuid, 'room': current_room}, safe=True)
 
 
 @csrf_exempt
