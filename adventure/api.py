@@ -66,12 +66,13 @@ def move(request):
 @api_view(["GET"])
 def getRooms(request):
     #Get all rooms from DB
-    rooms = []
-    for room in Room.objects.all():
-        print(room.title)
-        rooms.append(room.title)
-        print(rooms)
-    return JsonResponse({'rooms' : rooms}, safe=True)
+    # rooms = []
+    # for room in Room.objects.all():
+    #     print(room.title)
+    #     rooms.append(room.title)
+    #     print(rooms)
+    # return JsonResponse({'rooms' : rooms}, safe=True)
+    return JsonResponse({'rooms' : [room for room in Room.objects.all()]}, safe=True)
 
 
 @csrf_exempt
