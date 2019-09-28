@@ -146,13 +146,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-# CORS_ORIGIN_ALLOW_ALL=True
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://lambda-mud-be.herokuapp.com",
-    "https://space-quest-9.netlify.com"
-]
+CORS_ORIGIN_ALLOW_ALL=True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
