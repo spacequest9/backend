@@ -65,7 +65,7 @@ def move(request):
 @csrf_exempt
 @api_view(["GET"])
 def getRooms(request):
-    Get all rooms from DB
+    # Get all rooms from DB
     rooms = []
     for room in Room.objects.all():
         print(room.title)
