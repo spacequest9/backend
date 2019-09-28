@@ -17,23 +17,19 @@ import json
 def initialize(request):
     player = request.user.player
     room = player.room()
-
-    return JsonResponse({
-        'id': player.id,
-        'name': player.user.username,  
-        'uuid': uuid, 
-        'room': {
-            'id': room.id, 
-            'title': room.title, 
-            'description': room.description,
-            'n_to': room.n_to,
-            's_to': room.s_to,
-            'e_to': room.e_to,
-            'w_to': room.w_to,
-            'locx': room.locx,
-            'locy': room.locy,
-            'players': room.playerNames(player.id)
-        }, safe=True)
+    room_dict = {
+        'id': room.id, 
+        'title': room.title, 
+        'description': room.description,
+        'n_to': room.n_to,
+        's_to': room.s_to,
+        'e_to': room.e_to,
+        'w_to': room.w_to,
+        'locx': room.locx,
+        'locy': room.locy,
+        'players': room.playerNames(player.id)
+    }
+    return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': uuid, 'room': room_dict}, safe=True)
 
 
 @csrf_exempt
