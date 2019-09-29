@@ -34,7 +34,6 @@ def create_our_world(request):
 @api_view(["GET"])
 def initialize(request):
     print("initialize()")
-
     player = request.user.player
     room = player.room()
     player_names = room.playerNames(player.id)
