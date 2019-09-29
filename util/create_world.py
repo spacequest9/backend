@@ -100,6 +100,7 @@ def createWorld():
             print ("Date from file", (dataFromFile[dataFileIndex]))
             #Create room based on title, description, x and y co-ordinates
             room = Room(title = dataFromFile[dataFileIndex][0], description =dataFromFile[dataFileIndex][1], locx = x, locy=y)
+            room.save()
             dRooms[(x,y)] = room
 
             #Connect this room to its neghbour
@@ -115,8 +116,7 @@ def createWorld():
             if  y-distance >= starty:
                 if random.randint(1,10) in (1,2,3,4,5,6,7,8):#Skip 20% of souths
                     southRoom =  dRooms[(x, y - distance)]
-                    room.s_to = southRoom
-                    southRoom.n_to = room
+                    room.connectRooms(southRoom, "s")
                 else:
                     print("Skip adding south")
                     totalSouthSkipped += 1
@@ -132,8 +132,7 @@ def createWorld():
             if x-distance >= startx:
                 if random.randint(1, 10) in (1, 2, 3, 4, 5, 6, 7,8):#Skip 20% of west
                     westRoom =dRooms[(x-distance,y)]
-                    room.w_to=westRoom
-                    westRoom.e_to= room
+                    room.connectRooms(westRoom, "w")
                 else:
                     print("Skip adding west")
                     totalWestSkipped += 1
@@ -143,10 +142,6 @@ def createWorld():
     print("Rooms : ", dRooms)
     for cord, room in dRooms.items():
         print(cord, ":", room)
-        if room:
-            room.save()
-        else:
-            print("None room ...")
 
     print("Total Skipped ", totalSouthSkipped , totalWestSkipped)
 
