@@ -8,6 +8,7 @@ from .models import *
 from rest_framework.decorators import api_view
 import json
 from  util.create_world import createWorld
+from util.create_our_world import create
 
 # instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
@@ -16,16 +17,23 @@ from  util.create_world import createWorld
 @csrf_exempt
 @api_view(["POST"])
 def createworld(request):
-    print("Create worold")
+    print("Create world")
     createWorld()
     return JsonResponse({}, safe=True)
+
+
+@csrf_exempt
+@api_view(["POST"])
+def create_our_world(request):
+    print("Create our world")
+    create()
+    return JsonResponse({}, safe=True)
+
 
 @csrf_exempt
 @api_view(["GET"])
 def initialize(request):
     print("initialize()")
-
-    createWorld()
 
     player = request.user.player
     room = player.room()
