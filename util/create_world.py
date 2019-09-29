@@ -140,9 +140,13 @@ def createWorld():
 
             dataFileIndex += 1
 
+    print("Rooms : ", dRooms)
     for cord, room in dRooms.items():
         print(cord, ":", room)
-        room.save()
+        if room:
+            room.save()
+        else:
+            print("None room ...")
 
     print("Total Skipped ", totalSouthSkipped , totalWestSkipped)
 
