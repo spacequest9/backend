@@ -35,8 +35,11 @@ def create_our_world(request):
 def initialize(request):
     print("initialize()")
     player = request.user.player
+    print("initialize() player: " + str(player))
     room = player.room()
+    print("initialize() room: " + str(room))
     player_names = room.playerNames(player.id)
+    print("initialize() player_names: " + str(player_names))
     current_room = {
         'id': room.id, 
         'title': room.title, 
@@ -49,6 +52,7 @@ def initialize(request):
         'locy': room.locy,
         'players': player_names
     }
+    print("initialize() current_room: " + str(current_room))
     return JsonResponse({'id': player.id, 'name': player.user.username, 'uuid': player.uuid, 'room': current_room}, safe=True)
 
 
