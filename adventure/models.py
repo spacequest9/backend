@@ -44,22 +44,21 @@ class Player(models.Model):
     currentRoom = models.IntegerField(default=0)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     def initialize(self):
-        print("Player.initialize()")
+        # print("Player.initialize()")
         if self.currentRoom == 0:
-            print("Player.room() inside if")
+            # print("Player.room() inside if")
             self.currentRoom = Room.objects.first().id
-            print("Player.room() self.currentRoom: " + str(self.currentRoom))
+            # print("Player.room() self.currentRoom: " + str(self.currentRoom))
             self.save()
     def room(self):
-        print("Player.room()")
+        # print("Player.room()")
         try:
-            print("Player.room() inside try")
+            # print("Player.room() inside try")
             return Room.objects.get(id=self.currentRoom)
-            print("Player.room() after Room.objects.get()")
         except Room.DoesNotExist:
-            print("Player.room() inside except")
+            # print("Player.room() inside except")
             self.initialize()
-            print("Player.room() after Player.initialize()")
+            # print("Player.room() after Player.initialize()")
             return self.room()
 
 @receiver(post_save, sender=User)
