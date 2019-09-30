@@ -150,6 +150,7 @@ def createWorld():
 
     players=Player.objects.all()
     for p in players:
+
       p.currentRoom=dRooms[(200,250)].id
       p.save()
 
