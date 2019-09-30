@@ -113,6 +113,7 @@ def createWorld():
             #         northRoom.s_to = room
 
             # Look south which is 100,100, south is x, y-25
+            skipped = False
             if  y-distance >= starty:
                 if random.randint(1,10) in (1,2,3,4,5,6,7,8):#Skip 20% of souths
                     southRoom =  dRooms[(x, y - distance)]
@@ -120,6 +121,7 @@ def createWorld():
                 else:
                     print("Skip adding south")
                     totalSouthSkipped += 1
+                    skipped = True
 
             # # Look each which is x+25,y and should exist
             # if x +25 <= 350:
@@ -130,7 +132,8 @@ def createWorld():
 
             #Look west which is x+25,y and should exist
             if x-distance >= startx:
-                if random.randint(1, 10) in (1, 2, 3, 4, 5, 6, 7,8):#Skip 20% of west
+
+                if skipped or random.randint(1, 10) in (1, 2, 3, 4, 5, 6, 7,8):#Skip 20% of west
                     westRoom =dRooms[(x-distance,y)]
                     room.connectRooms(westRoom, "w")
                 else:
@@ -147,7 +150,7 @@ def createWorld():
 
     players=Player.objects.all()
     for p in players:
-      p.currentRoom=dRooms[0].id
+      p.currentRoom=dRooms[(200,250)].id
       p.save()
 
 #
