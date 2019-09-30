@@ -147,8 +147,9 @@ def createWorld():
 
     players=Player.objects.all()
     for p in players:
-      p.currentRoom=dRooms[0].id
-      p.save()
+        print(dRooms)
+        p.currentRoom=dRooms[0].id
+        p.save()
 
 #
 #
